@@ -1,23 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import Separator from './Components/Separator/Separator';
+import Watches from './Components/Watches/Watches';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+        <h1 className=''>Курс React.<br></br>Домашнее задание по&nbsp;теме<br></br>"Композиция компонентов"</h1>
+        <h2 className='mx-auto text-center'>Задание 1. "Карточки (Cards)"</h2>
+      <div className='task1' id='task-1'>
+        <Watches className = {''}/>
+      </div>
+      <Separator/>
     </div>
   );
 }
