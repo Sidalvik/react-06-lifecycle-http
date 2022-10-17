@@ -2,11 +2,16 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 export class CloseBtn extends Component {
-  static propTypes = {}
+  static propTypes = {
+    className: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
+  }
 
   render() {
+    const {className, onClick} = this.props;
+
     return (
-      <div>CloseBtn</div>
+      <button className={(className || '') + ' close-btn'} onClick={onClick}>x</button>
     )
   }
 }

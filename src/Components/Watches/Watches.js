@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import AddWatchForm from './AddWatchForm/AddWatchForm';
+import WatchesList from './WatchesList/WatchesList';
+import Watch from './Watch/Watch';
 
 
 export class Watches extends Component {
@@ -10,10 +12,10 @@ export class Watches extends Component {
 
   state = {
     watchesList: [
-        {city: 'New York', timeZone: -5, interval: null,},
-        {city: 'Moscow', timeZone: +3, interval: null,},
-        {city: 'London', timeZone: +5, interval: null,},
-        {city: 'Tokyo', timeZone: +13, interval: null,},
+        {city: 'New York', timeZone: -4,},
+        {city: 'Moscow', timeZone: +3,},
+        {city: 'London', timeZone: +1,},
+        {city: 'Tokyo', timeZone: +9,},
     ],
     inputs: {
       city: '',
@@ -21,14 +23,11 @@ export class Watches extends Component {
     },
   };
 
-  getCurrentTimeZone = () => {
-    return (new Date()).getTimezoneOffset() / -60;
-  }
-
   handleChange =  (event) => {
     const name = event.target.name;
     const value = event.target.value;
     if (name === 'timeZone' && Number.isNaN(value)) return;
+
     this.setState({...this.state, inputs: {...this.state.inputs, [name]: value}});
   }
 
@@ -38,7 +37,7 @@ export class Watches extends Component {
     }
 
     const newState =  {
-        watchesList: [...this.state.watchesList, {...this.state.inputs, interval: null}],
+        watchesList: [...this.state.watchesList, {...this.state.inputs}],
         inputs: {
           city: '',
           timeZone: '',
@@ -50,20 +49,36 @@ export class Watches extends Component {
     console.log('addWatch');
   }
 
-  closeWatch = function () {
+  closeWatch = (id) => {
+    const newState = {
+      ...this.state,
+      watchesList: this.state.watchesList.filter((item, index) => index !== id),
+    };
+    
+    this.setState(newState);
+
     console.log('closeWatch');
   }
 
 
   render() {
+    const watchesItems = this.state.watchesList.map((item, index) => {
+      const newProps =  {
+        ...item,
+        key: index,
+        id: index,
+        closeWatch: this.closeWatch,
+      }
+      return <Watch {...newProps}/>
+    });
+
     return (
       <div>
         <AddWatchForm form = {this.state.inputs} handleChange = {this.handleChange} addWatch = {this.addWatch}/>
-        <section className='watches-list'>
-            <p>часы 1</p>
-            <p>часы 2</p>
-            <p>часы 3</p>
-        </section>
+        <WatchesList className = {''}>
+          {watchesItems}
+          {/* <Watch closeWatch = {this.closeWatch}/> */}
+        </WatchesList>
       </div>
     )
   }

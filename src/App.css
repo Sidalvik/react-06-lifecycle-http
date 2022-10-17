@@ -17,3 +17,99 @@ h2 {
     margin: 2rem auto 1rem;
     text-align: center;
 }
+
+#task-1 .watches-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 4rem 0;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+#task-1 .watch {
+    margin: 2rem;
+    box-sizing: border-box;
+}
+
+#task-11 .city-name {
+    text-align: center;
+}
+
+.watch-close-btn {
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    padding: 0 0.125em;
+    font-size: 0.5em;
+    line-height: 1;
+    cursor: pointer;
+}
+
+#task-1  .clock-face {
+    position: relative;
+    width: 5em;
+    height: 5em;
+    font-size: 3rem;
+    border-radius: 50%;
+    border: 3px solid black;
+}
+
+#task-1  .arrow {
+    position: absolute;
+    top: 50%;
+    box-sizing: content-box;
+    border-style: none;
+    transform-origin: center top;
+}
+
+#task-1  .arrow::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    display: block;
+    width: 0.1em;
+    height: 0.2em;
+    box-sizing: border-box;
+    border: 0.05em solid transparent;
+    border-top: 0.2em solid;
+    border-bottom-width: 0;
+    transform: translate(50%, 100%);
+}
+
+#task-1  .arrow.arrow-hours {
+    left: calc(50% - 0.025em);
+    height: 1.3em;
+    width: 0.05em;
+    background-color: brown;
+    /* transform: rotate(180deg); */
+}
+
+#task-1  .arrow.arrow-hours::after {
+    border-top-color: brown;
+}
+
+#task-1  .arrow.arrow-minutes {
+    left: calc(50% - 0.015em);
+    height: 2.0em;
+    width: 0.03em;
+    background-color: green;
+    /* transform: rotate(180deg); */
+}
+
+#task-1  .arrow.arrow-minutes::after {
+    border-top-color: green;
+}
+
+#task-1  .arrow.arrow-seconds {
+    left: calc(50% - 0.015em);
+    height: 2.2em;
+    width: 0.03em;
+    background-color: blue;
+    /* transform: rotate(180deg); */
+    opacity: 0.5;
+}
+
+#task-1  .arrow.arrow-seconds::after {
+    border-top-color: blue;
+}
