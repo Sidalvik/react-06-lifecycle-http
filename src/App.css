@@ -18,10 +18,31 @@ h2 {
     text-align: center;
 }
 
+#task-1 {
+    padding: 2rem;
+}
+
+#task-1 .add-watch-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+}
+
+#task-1 .add-watch-form .input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#task-1 .add-watch-form input,
+#task-1 .add-watch-form button {
+    margin: 0.5em 0;
+    padding: 0.5em 1em;
+}
+
 #task-1 .watches-list {
     display: flex;
     flex-wrap: wrap;
-    margin: 4rem 0;
+    margin: 1.5rem 0 0;
     justify-content: space-between;
     gap: 3rem;
 }
@@ -31,21 +52,12 @@ h2 {
     box-sizing: border-box;
 }
 
-#task-11 .city-name {
+#task-1 .city-name {
     text-align: center;
+    font-weight: bold;
 }
 
-.watch-close-btn {
-    position: absolute;
-    top: -0.5em;
-    right: -0.5em;
-    padding: 0 0.125em;
-    font-size: 0.5em;
-    line-height: 1;
-    cursor: pointer;
-}
-
-#task-1  .clock-face {
+#task-1 .clock-face {
     position: relative;
     width: 5em;
     height: 5em;
@@ -54,7 +66,28 @@ h2 {
     border: 3px solid black;
 }
 
-#task-1  .arrow {
+#task-1 .watch-close-btn {
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    padding: 0.2em;
+    font-size: 0.5em;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#task-1 .digital_clock {
+    position: absolute;
+    bottom: 0.25em;
+    left: 50%;
+    font-size: 0.5em;
+    font-weight: bold;
+    opacity: 0.4;
+    transform: translate(-50%, 0);
+}
+
+#task-1 .arrow {
     position: absolute;
     top: 50%;
     box-sizing: content-box;
@@ -62,7 +95,7 @@ h2 {
     transform-origin: center top;
 }
 
-#task-1  .arrow::after {
+#task-1 .arrow::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -77,39 +110,36 @@ h2 {
     transform: translate(50%, 100%);
 }
 
-#task-1  .arrow.arrow-hours {
+#task-1 .arrow.arrow-hours {
     left: calc(50% - 0.025em);
-    height: 1.3em;
+    height: 1.1em;
     width: 0.05em;
     background-color: brown;
-    /* transform: rotate(180deg); */
 }
 
-#task-1  .arrow.arrow-hours::after {
+#task-1 .arrow.arrow-hours::after {
     border-top-color: brown;
 }
 
-#task-1  .arrow.arrow-minutes {
+#task-1 .arrow.arrow-minutes {
     left: calc(50% - 0.015em);
     height: 2.0em;
     width: 0.03em;
     background-color: green;
-    /* transform: rotate(180deg); */
 }
 
-#task-1  .arrow.arrow-minutes::after {
+#task-1 .arrow.arrow-minutes::after {
     border-top-color: green;
 }
 
-#task-1  .arrow.arrow-seconds {
+#task-1 .arrow.arrow-seconds {
     left: calc(50% - 0.015em);
     height: 2.2em;
     width: 0.03em;
     background-color: blue;
-    /* transform: rotate(180deg); */
     opacity: 0.5;
 }
 
-#task-1  .arrow.arrow-seconds::after {
+#task-1 .arrow.arrow-seconds::after {
     border-top-color: blue;
 }

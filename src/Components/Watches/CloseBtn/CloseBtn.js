@@ -11,7 +11,7 @@ export class CloseBtn extends Component {
     const {className, onClick} = this.props;
 
     return (
-      <button className={(className || '') + ' close-btn'} onClick={onClick}>x</button>
+      <button className={(className || '') + ' close-btn'} onClick={onClick}>&#128473;</button>
     )
   }
 }

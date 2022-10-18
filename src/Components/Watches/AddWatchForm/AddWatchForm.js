@@ -13,13 +13,17 @@ export class AddWatchForm extends Component {
 
   render() {
     const {form, handleChange, addWatch: handleClick } = this.props;
+
     return (
         <form className='add-watch-form'>
+          <div className="input-group">
             <label htmlFor="city">Название</label>
             <input type="text" id='city' name='city' value={form['city']} onChange={handleChange}/>
-
+          </div>
+          <div className="input-group">
             <label htmlFor="timeZone">Временная зона</label>
-            <input type="number" id='timeZone' name='timeZone' value={form['timeZone']} onChange={handleChange} step='0.1' min={'-12'} max={'12'}/>
+            <input type="number" id='timeZone' name='timeZone' value={form['timeZone']} onChange={handleChange} step='0.25' min={'-12'} max={'12'}/>
+          </div>
 
             <button type='button' onClick={handleClick} className='add-watch-form__btn'>Добавить</button>
         </form>

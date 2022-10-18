@@ -19,7 +19,7 @@ export class Watches extends Component {
     ],
     inputs: {
       city: '',
-      timeZone: '',
+      timeZone: '0',
     },
   };
 
@@ -36,11 +36,13 @@ export class Watches extends Component {
         return;
     }
 
+    let timeZoneFloat = Number.parseFloat(this.state.inputs?.['timeZone'].replace(',', '.'));
+    
     const newState =  {
-        watchesList: [...this.state.watchesList, {...this.state.inputs}],
+        watchesList: [...this.state.watchesList, {city: this.state.inputs?.['city'], timeZone: timeZoneFloat}],
         inputs: {
           city: '',
-          timeZone: '',
+          timeZone: '0',
         },
     }
 
@@ -60,7 +62,6 @@ export class Watches extends Component {
     console.log('closeWatch');
   }
 
-
   render() {
     const watchesItems = this.state.watchesList.map((item, index) => {
       const newProps =  {
@@ -77,7 +78,6 @@ export class Watches extends Component {
         <AddWatchForm form = {this.state.inputs} handleChange = {this.handleChange} addWatch = {this.addWatch}/>
         <WatchesList className = {''}>
           {watchesItems}
-          {/* <Watch closeWatch = {this.closeWatch}/> */}
         </WatchesList>
       </div>
     )

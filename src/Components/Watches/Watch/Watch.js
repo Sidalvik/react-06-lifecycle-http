@@ -10,6 +10,7 @@ export class Watch extends Component {
   }
 
   state = {
+    timeComponents: {hours: 0, minutes: 0, seconds: 0},
     interval: null,
   }
 
@@ -30,29 +31,35 @@ export class Watch extends Component {
     }
   }
 
+  updateTime = () => {
+    console.log('update-' + this.props.id)
+    const newState = {...this.state, timeComponents: this.getTimeComponent(this.props.timeZone),};
+    this.setState(newState);
+  }
+
   componentDidMount = () => {
-    // let interval = setInterval(() => {this.render()}, 1 * 1000);
-    // this.setState({interval});
+    let interval = setInterval(() => {this.updateTime()}, 1 * 1000);
+    this.setState({interval});
     console.log('componentDidMount "Watch"');
   }
 
   componentWillUnmount = () => {
-    clearInterval(this.state.interval);
-    console.log('componentWillUnmount "Watch"');
+    console.log('componentWillUnmount "Watch". interval=' + this.state.interval);
+    let result = clearInterval(this.state.interval);
+    console.log('componentWillUnmount "Watch". clear interval result=' + result);
   }
 
   render() {
-    const {city, timeZone, id, closeWatch: handleClick} = this.props;
-    const timeComponents = this.getTimeComponent(timeZone);
-    console.log('run render Watch-' + id);
+    const {city, timeZone,  id, closeWatch: handleClick} = this.props;
+
     return (
       <div className='watch'>
-        <p className='city-name'>{city}</p>
-        <p>{timeComponents.hours}:{timeComponents.minutes}:{timeComponents.seconds}</p>
+        <p className='city-name'>{`${city} (UTC ${timeZone < 0 ? timeZone : '+' + timeZone})`}</p>
         <div className="clock-face">
-          <Arrow type={'hours'} value={timeComponents.hours}/>
-          <Arrow type={'minutes'} value={timeComponents.minutes}/>
-          <Arrow type={'seconds'} value={timeComponents.seconds}/>
+          <p className='digital_clock'>{this.state.timeComponents.hours}:{this.state.timeComponents.minutes}:{this.state.timeComponents.seconds}</p>
+          <Arrow type={'hours'} value={this.state.timeComponents.hours}/>
+          <Arrow type={'minutes'} value={this.state.timeComponents.minutes}/>
+          <Arrow type={'seconds'} value={this.state.timeComponents.seconds}/>
           <CloseBtn onClick={() => handleClick(id)} className={'watch-close-btn'}/>
         </div>
       </div>
