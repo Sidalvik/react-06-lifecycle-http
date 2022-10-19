@@ -16,6 +16,7 @@ export class Watches extends Component {
         {city: 'Moscow', timeZone: +3,},
         {city: 'London', timeZone: +1,},
         {city: 'Tokyo', timeZone: +9,},
+        {city: 'Katmandu', timeZone: +5.75,},
     ],
     inputs: {
       city: '',

@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     max-width: 75%;
     margin: 1rem auto;
@@ -18,8 +24,9 @@ h2 {
     text-align: center;
 }
 
-#task-1 {
-    padding: 2rem;
+#task-1,
+#task-2 {
+    padding: 1rem 2rem;
 }
 
 #task-1 .add-watch-form {
@@ -142,4 +149,76 @@ h2 {
 
 #task-1 .arrow.arrow-seconds::after {
     border-top-color: blue;
+}
+
+
+/* task-2
+========================================= */
+#task-2 .title {
+    display: inline-block;
+    margin-right: 1.5rem;
+    font-size: 1.5rem;
+}
+
+#task-2 .notes-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 1.5rem;
+}
+
+#task-2 .note-card {
+    position: relative;
+    width: calc(33% - 3rem);
+    min-width: 10rem;
+    padding: 1.5rem;
+    border: 1px solid black;
+}
+
+#task-2 .new-note {
+    position: relative;
+    margin: 1rem 0;
+    max-width: 50%;
+}
+
+#task-2 .new-note textarea {
+    width: 100%;
+    height: 100%;
+    padding: 1.2rem 1rem;
+    resize: none;
+}
+
+#task-2 .btn {
+    box-sizing: border-box;
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0em;
+    font-size: 2rem;
+    line-height: 1;
+    border-radius: 50%;
+    border-width: 1px;
+    cursor: pointer;
+}
+
+#task-2 .btn.btn-update {
+    display: inline-block;
+    color: green;
+}
+
+#task-2 .btn.btn-post {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    padding-left: 0.2rem;
+    font-size: 1.2rem;
+    /* transform: translate(50%, -50%); */
+}
+
+#task-2 .btn.btn-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.2rem;
+    transform: translate(50%, -50%);
 }
