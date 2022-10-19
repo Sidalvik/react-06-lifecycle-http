@@ -32,7 +32,6 @@ export class Watch extends Component {
   }
 
   updateTime = () => {
-    console.log('update-' + this.props.id)
     const newState = {...this.state, timeComponents: this.getTimeComponent(this.props.timeZone),};
     this.setState(newState);
   }
@@ -40,13 +39,10 @@ export class Watch extends Component {
   componentDidMount = () => {
     let interval = setInterval(() => {this.updateTime()}, 1 * 1000);
     this.setState({interval});
-    console.log('componentDidMount "Watch"');
   }
 
   componentWillUnmount = () => {
-    console.log('componentWillUnmount "Watch". interval=' + this.state.interval);
-    let result = clearInterval(this.state.interval);
-    console.log('componentWillUnmount "Watch". clear interval result=' + result);
+    clearInterval(this.state.interval);
   }
 
   render() {

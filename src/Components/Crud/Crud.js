@@ -13,51 +13,64 @@ export class Crud extends Component {
     state = {
         newContent: '',
         notes: [
-            {
-                id: 1,
-                content: 'То, что было введено в поле ввода',
-            },
-            {
-                id: 2,
-                content: 'То, что было введено в поле ввода',
-            },
-            {
-                id: 3,
-                content: 'То, что было введено в поле ввода',
-            },
-            {
-                id: 4,
-                content: 'То, что было введено в поле ввода',
-            },
         ],
     };
 
     addNote = () => {
-        const newNote = JSON.stringify({id: 0, content: this.state.newContent});
+        if (!this.state.newContent) return;
 
-        console.log('addNote:' + newNote);
+        const newNote = JSON.stringify({id: 0, content: this.state.newContent});
+        const fetchOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+              },
+              body: newNote,
+        }
+        return fetch(process.env.REACT_APP_NOTES_URL, fetchOptions);
+
     };
 
     handleAddClick = () => {
-        this.addNote();
-        this.updateNotes();
-        console.log('handleAddClick:');
+        let result = this.addNote();
+        if (!result) return;
+
+        result
+            .then((response) => {
+                if (!response.ok) {return};
+                this.setState({newContent: ''});
+                this.updateNotes();
+            });
     };
 
     deleteNote = (id) => {
-        console.log('deleteNote:' + id);
+        const fetchOptions = {
+            method: 'DELETE',
+        }
+
+        return fetch(`${process.env.REACT_APP_NOTES_URL}/${id}`, fetchOptions);
     };
 
     handleDeleteClick = (id) => {
-        console.log('handleDeleteClick:' + id);
+        let result = this.deleteNote(id);
+        if (!result) return;
+        result
+            .then((response) => {
+                if (!response.ok) {return};
+                this.updateNotes();
+            });
     };
 
     updateNotes = () => {
-        console.log('updateNotes');
+        fetch(process.env.REACT_APP_NOTES_URL)
+            .then((response => response.json()))
+            .then((notes) => {
+                this.setState({notes});
+            });
     };
 
     handleUpdateClick = () => {
-        console.log('handleUpdateClick');
+        this.updateNotes();
     }
 
     handleChangeNewNote = (event) => {
@@ -65,11 +78,15 @@ export class Crud extends Component {
         this.setState({newContent});
     }
 
+    componentDidMount = () => {
+        this.updateNotes();
+    }
+
     render() {
-        const noteItems = this.state.notes.map((item) => {
+        const noteItems = this.state.notes?.length === 0 ? <p>Заметок нет</p>: this.state.notes.map((item) => {
             return (
             <NoteCard key={item.id} id={item.id} onBtnClick={this.handleDeleteClick}>
-                <p>{item.id}</p>
+                <p className='title-notes'>{`Заметка: ${item.id}`}</p>
                 <p>{item.content}</p>
             </NoteCard>)
         });
@@ -78,7 +95,6 @@ export class Crud extends Component {
             <div className='cruds'>
                 <h3 className='title'>Notes</h3>
                 <UpdateBtn onClick={this.handleUpdateClick}/>
-
                 <div className='notes-items'>
                     {noteItems}
                 </div>

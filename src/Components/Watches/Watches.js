@@ -48,8 +48,6 @@ export class Watches extends Component {
     }
 
     this.setState(newState);
-
-    console.log('addWatch');
   }
 
   closeWatch = (id) => {
@@ -59,8 +57,6 @@ export class Watches extends Component {
     };
     
     this.setState(newState);
-
-    console.log('closeWatch');
   }
 
   render() {
